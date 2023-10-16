@@ -1,3 +1,4 @@
+## Bu projenin geliştirmeleri devam ediyor. Aşağıdaki bütün servisler eklenecektir.
 ## Servisler
 
 1. **Naming Server (EUREKA)**
