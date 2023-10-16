@@ -3,8 +3,9 @@
 
 1. **Naming Server (EUREKA)**
 2. **Config Server**
-3. **Api Gateway**
-4. **Product Service**
+3. **Identity Service**
+4. **Api Gateway**
+5. **Product Service**
    - **Product**
      - id
      - name (string)
@@ -29,10 +30,10 @@
      - rating (integer)
      - date (Date)
   
-5. **User Service**
-6. **Payment Service**
-7. **Basket Service**
-8. **Order Service** (Opsiyonel)
+6. **User Service**
+7. **Payment Service**
+8. **Basket Service**
+9. **Order Service** (Opsiyonel)
 
 ### Opsiyonel Geliştirmeler
 
