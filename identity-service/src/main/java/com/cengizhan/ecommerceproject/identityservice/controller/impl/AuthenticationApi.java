@@ -58,7 +58,7 @@ public class AuthenticationApi {
   @GetMapping("/validate")
   public String validateToken(@RequestParam("token") String token) {
     service.validateToken(token);
-    return "Token is valid";
+    return "Token is valid token :" + token;
   }
 
 
