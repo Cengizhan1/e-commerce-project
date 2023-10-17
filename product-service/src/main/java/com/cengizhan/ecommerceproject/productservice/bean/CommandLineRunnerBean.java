@@ -61,7 +61,7 @@ public class CommandLineRunnerBean {
             System.out.println("CommandLineRunner Çalıştı");
             log.info("CommandLineRunner Çalıştı");
             if (iProductRepository.count() == 0) {
-                dummyTask();
+//                dummyTask();
             }
         };
     }

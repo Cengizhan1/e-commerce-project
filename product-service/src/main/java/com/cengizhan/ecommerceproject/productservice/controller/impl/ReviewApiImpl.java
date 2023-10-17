@@ -21,7 +21,7 @@ import java.util.List;
 // API
 @RestController
 //@CrossOrigin(origins = FrontendUrl.REACT_URL)
-@RequestMapping("/review/api/v1")
+@RequestMapping("/product-service/review/api/v1")
 public class ReviewApiImpl implements IReviewApi<ReviewDto> {
     // injection
     private final IReviewService iReviewService;

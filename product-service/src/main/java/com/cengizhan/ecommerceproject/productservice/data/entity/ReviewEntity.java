@@ -26,7 +26,9 @@ public class ReviewEntity extends BaseEntity implements Serializable {
     @JoinColumn(name="product_id",nullable = false)
     private ProductEntity relationProductEntity;
 
-    // user relation will be added later
+    @Column(name = "user_id")
+    private Integer userId;
+
     @Column(name = "review")
     private String review;
 

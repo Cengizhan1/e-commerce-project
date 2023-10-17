@@ -29,6 +29,9 @@
         @Size(min=3,message = "{review.validation.constraints.minLength.message}")
         private String review;
 
+//        @NotEmpty(message ="{userId.validation.constraints.NotNull.message}")
+//        private Integer userId;
+
         @NotEmpty(message ="{rating.validation.constraints.NotNull.message}")
         private Integer rating;
 

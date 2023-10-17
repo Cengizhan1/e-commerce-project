@@ -19,7 +19,7 @@ import java.util.List;
 // API
 @RestController
 //@CrossOrigin(origins = FrontendUrl.REACT_URL)
-@RequestMapping("/product/api/v1")
+@RequestMapping("/product-service/product/api/v1")
 public class ProductApiImpl implements IProductApi<ProductDto> {
     // injection
     private final IProductService iProductService;

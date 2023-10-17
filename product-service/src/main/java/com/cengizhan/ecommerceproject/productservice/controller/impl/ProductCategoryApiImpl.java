@@ -17,7 +17,7 @@ import java.util.List;
 // API
 @RestController
 //@CrossOrigin(origins = FrontendUrl.REACT_URL)
-@RequestMapping("/product-category/api/v1")
+@RequestMapping("/product-service/product-category/api/v1")
 public class ProductCategoryApiImpl implements IProductCategoryApi<ProductCategoryDto> {
     // injection
     private final IProductCategoryService iProductCategoryService;

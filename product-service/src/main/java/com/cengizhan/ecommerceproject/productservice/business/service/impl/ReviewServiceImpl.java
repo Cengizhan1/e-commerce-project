@@ -1,11 +1,8 @@
 package com.cengizhan.ecommerceproject.productservice.business.service.impl;
 
 import com.cengizhan.ecommerceproject.productservice.bean.ModelMapperBean;
-import com.cengizhan.ecommerceproject.productservice.business.dto.ProductDto;
 import com.cengizhan.ecommerceproject.productservice.business.dto.ReviewDto;
-import com.cengizhan.ecommerceproject.productservice.business.service.IProductService;
 import com.cengizhan.ecommerceproject.productservice.business.service.IReviewService;
-import com.cengizhan.ecommerceproject.productservice.data.entity.ProductEntity;
 import com.cengizhan.ecommerceproject.productservice.data.entity.ReviewEntity;
 import com.cengizhan.ecommerceproject.productservice.data.repository.IProductRepository;
 import com.cengizhan.ecommerceproject.productservice.data.repository.IReviewRepository;
@@ -13,6 +10,8 @@ import com.cengizhan.ecommerceproject.productservice.exception.CustomException;
 import com.cengizhan.ecommerceproject.productservice.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +45,7 @@ public class ReviewServiceImpl implements IReviewService<ReviewDto, ReviewEntity
         if (reviewDto != null) {
             ReviewEntity reviewEntity = dtoToEntity(reviewDto);
             reviewEntity.setRelationProductEntity(iProductRepository.findById(reviewDto.getProductId()).get());
+            reviewEntity.setUserId(1);
             iReviewRepository.save(reviewEntity);
             reviewDto.setId(reviewEntity.getId());
         } else {
@@ -83,10 +83,14 @@ public class ReviewServiceImpl implements IReviewService<ReviewDto, ReviewEntity
     @Override
     @Transactional // create, delete, update
     public ReviewDto reviewServiceUpdate(Long id, ReviewDto reviewDto) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication);
+
         ReviewDto reviewFindDto = reviewServiceFindById(id);
         if (reviewFindDto != null) {
             ReviewEntity reviewEntity = dtoToEntity(reviewFindDto);
             reviewEntity.setReview(reviewDto.getReview());
+            reviewEntity.setUserId(1);
             reviewEntity.setRating(reviewDto.getRating());
             reviewEntity.setRelationProductEntity(iProductRepository.findById(reviewDto.getProductId()).get());
             iReviewRepository.save(reviewEntity);
