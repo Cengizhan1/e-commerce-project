@@ -61,4 +61,8 @@ public class ProductCategoryApiImpl implements IProductCategoryApi<ProductCatego
     public ResponseEntity<?> productCategoryApiAllDelete() {
         return ResponseEntity.status(200).body(iProductCategoryService.productCategoryServiceDeleteAll());
     }
+    @GetMapping(value = "/test")
+    public String test() {
+        return "test";
+    }
 }

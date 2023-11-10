@@ -55,11 +55,16 @@ public class AuthenticationApi {
     ) throws IOException {
         service.refreshToken(request, response);
     }
-  @GetMapping("/validate")
-  public String validateToken(@RequestParam("token") String token) {
-    service.validateToken(token);
-    return "Token is valid token :" + token;
-  }
+
+    @GetMapping("/validate")
+    public String validateToken(@RequestParam("token") String token) {
+        service.validateToken(token);
+        return "Token is valid token :" + token;
+    }
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
 
 
 }
