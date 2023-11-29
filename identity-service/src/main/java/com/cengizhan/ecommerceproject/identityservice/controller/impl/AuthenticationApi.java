@@ -57,9 +57,15 @@ public class AuthenticationApi {
     }
 
     @GetMapping("/validate")
-    public String validateToken(@RequestParam("token") String token) {
-        service.validateToken(token);
-        return "Token is valid token :" + token;
+    public void validateToken(@RequestParam("token") String token) {
+        try {
+            System.out.println("identity service validate fonksiyonuna girdi");
+            service.validateToken(token);
+            System.out.println("identity service validate fonksiyonu bitti");
+        } catch (Exception e) {
+            logger.error("validateToken method threw an exception", e);
+            throw e;
+        }
     }
     @GetMapping("/test")
     public String test() {

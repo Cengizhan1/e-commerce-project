@@ -1,7 +1,9 @@
 package com.cengizhan.ecommerceproject.apigateway.filter;
 
+import com.cengizhan.ecommerceproject.apigateway.clients.IdentityServiceClient;
 import com.cengizhan.ecommerceproject.apigateway.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
@@ -11,8 +13,10 @@ import org.springframework.stereotype.Component;
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
     @Autowired
     private RouteValidator validator;
+//    @Autowired
+//    private JwtUtil jwtUtil;
     @Autowired
-    private JwtUtil jwtUtil;
+    private IdentityServiceClient identityServiceClient;
 
     public AuthenticationFilter() {
         super(Config.class);
@@ -31,10 +35,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     authHeader = authHeader.substring(7);
                 }
                 try {
-                    jwtUtil.validateToken(authHeader);
-
+                    identityServiceClient.validateToken(authHeader);
                 } catch (Exception e) {
-                    System.out.println("invalid access...!");
+                    System.out.println("invalid access...! " + e.getMessage());
                     throw new RuntimeException(e.getMessage());
                 }
             }
