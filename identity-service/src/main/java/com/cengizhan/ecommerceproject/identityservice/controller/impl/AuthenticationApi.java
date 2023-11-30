@@ -4,12 +4,15 @@ import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationRequest
 import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationResponse;
 import com.cengizhan.ecommerceproject.identityservice.auth.RegisterRequest;
 import com.cengizhan.ecommerceproject.identityservice.business.service.AuthenticationService;
+import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -57,11 +60,12 @@ public class AuthenticationApi {
     }
 
     @GetMapping("/validate")
-    public void validateToken(@RequestParam("token") String token) {
+    public ResponseEntity<Integer> validateToken(@RequestParam("token") String token) {
         try {
-            System.out.println("identity service validate fonksiyonuna girdi");
             service.validateToken(token);
-            System.out.println("identity service validate fonksiyonu bitti");
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User userDetails = (User) authentication.getPrincipal();
+            return ResponseEntity.ok(userDetails.getId());
         } catch (Exception e) {
             logger.error("validateToken method threw an exception", e);
             throw e;
