@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.identityservice.business.service;
+package com.cengizhan.ecommerceproject.identityservice.business.service.impl;
 
 import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationRequest;
 import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationResponse;
@@ -7,7 +7,7 @@ import com.cengizhan.ecommerceproject.identityservice.config.JwtService;
 import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
 import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
 import com.cengizhan.ecommerceproject.identityservice.data.repository.TokenRepository;
-import com.cengizhan.ecommerceproject.identityservice.data.repository.UserRepository;
+import com.cengizhan.ecommerceproject.identityservice.data.repository.IUserRepository;
 import com.cengizhan.ecommerceproject.identityservice.enums.TokenType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final UserRepository repository;
+    private final IUserRepository repository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;

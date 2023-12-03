@@ -7,6 +7,7 @@ import com.cengizhan.ecommerceproject.productservice.business.service.IProductSe
 import com.cengizhan.ecommerceproject.productservice.business.service.IReviewService;
 import com.cengizhan.ecommerceproject.productservice.controller.IProductApi;
 import com.cengizhan.ecommerceproject.productservice.controller.IReviewApi;
+import com.cengizhan.ecommerceproject.productservice.data.entity.ReviewEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,7 +25,7 @@ import java.util.List;
 @RequestMapping("/product-service/review/api/v1")
 public class ReviewApiImpl implements IReviewApi<ReviewDto> {
     // injection
-    private final IReviewService iReviewService;
+    private final IReviewService<ReviewDto, ReviewEntity> iReviewService;
 
     // CREATE
     // /review/api/v1/create

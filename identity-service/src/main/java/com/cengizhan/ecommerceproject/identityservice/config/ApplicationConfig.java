@@ -1,6 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.config;
 
-import com.cengizhan.ecommerceproject.identityservice.data.repository.UserRepository;
+import com.cengizhan.ecommerceproject.identityservice.data.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-  private final UserRepository repository;
+  private final IUserRepository repository;
 
   @Bean
   public UserDetailsService userDetailsService() {
