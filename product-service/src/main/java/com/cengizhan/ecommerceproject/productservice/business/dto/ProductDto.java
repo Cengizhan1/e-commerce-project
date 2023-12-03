@@ -47,6 +47,8 @@
         private String code;
 
         private Float avgRating;
-
+        @NotEmpty(message ="{categoryId.validation.constraints.NotNull.message}")
         private Long categoryId;
+        @NotEmpty(message ="{user_id.validation.constraints.NotNull.message}")
+        private Integer userId;
     }

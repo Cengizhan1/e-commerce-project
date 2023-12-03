@@ -43,9 +43,13 @@ public class ProductEntity extends BaseEntity implements Serializable {
     private String code;
     @Column(name = "avg_rating")
     private Float avgRating;
+    @Column(name = "user_id")
+    private Integer userId;
+
     @ManyToOne(optional = false)
     @JoinColumn(name="category_id",nullable = false)
     private ProductCategoryEntity relationProductCategoryEntity;
+
 
     @OneToMany(mappedBy = "relationProductEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<ReviewEntity> relationReviewEntityList;

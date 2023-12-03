@@ -8,6 +8,7 @@ import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
 
 @Component
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
@@ -35,7 +36,14 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     authHeader = authHeader.substring(7);
                 }
                 try {
-                    identityServiceClient.validateToken(authHeader);
+                    Integer userId = 1;
+                    userId = identityServiceClient.validateToken(authHeader);
+                    System.out.println(userId);
+//                    ServerWebExchange modifiedExchange = exchange.mutate()
+//                            .request(exchange.getRequest().mutate()
+//                                    .header("userId", userId.toString())
+//                                    .build())
+//                            .build();
                 } catch (Exception e) {
                     System.out.println("invalid access...! " + e.getMessage());
                     throw new RuntimeException(e.getMessage());

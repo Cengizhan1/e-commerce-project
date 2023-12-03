@@ -60,12 +60,13 @@ public class AuthenticationApi {
     }
 
     @GetMapping("/validate")
-    public ResponseEntity<Integer> validateToken(@RequestParam("token") String token) {
+    public Integer validateToken(@RequestParam("token") String token) {
         try {
             service.validateToken(token);
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            User userDetails = (User) authentication.getPrincipal();
-            return ResponseEntity.ok(userDetails.getId());
+//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//            User userDetails = (User) authentication.getPrincipal();
+//            System.out.println(userDetails.getId());
+            return (Integer) 1;
         } catch (Exception e) {
             logger.error("validateToken method threw an exception", e);
             throw e;

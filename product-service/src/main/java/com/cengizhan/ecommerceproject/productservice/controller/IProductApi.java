@@ -10,7 +10,7 @@ public interface IProductApi<D> {
     public ResponseEntity<?> productApiCreate(D d);
 
     // LIST
-    public ResponseEntity<List<D>>  productApiList(Long categoryId);
+    public ResponseEntity<List<D>>  productApiList(Long categoryId,Integer userId);
 
     // FIND BY
     public ResponseEntity<?>  productApiFindById(Long id);

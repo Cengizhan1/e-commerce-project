@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "identity-service", url = "http://localhost:8765/api/v1/auth/")
 public interface IdentityServiceClient {
     @GetMapping("validate") // Update the endpoint accordingly
-    void validateToken(@RequestParam("token") String token);
+    Integer validateToken(@RequestParam("token") String token);
 }

@@ -1,0 +1,66 @@
+Table tokens {
+  id int [primary key]
+  token varchar [unique]
+  tokenType varchar
+  revoked boolean
+  expired boolean
+  user_id int
+}
+
+Table _user {
+  id int [primary key]
+  firstname varchar
+  lastname varchar
+  email varchar [unique]
+  password varchar
+  role varchar
+  active_account boolean
+}
+
+Table product_categories {
+  id int [primary key]
+  name varchar
+  description_short varchar
+  description varchar
+}
+
+Table products {
+  id int [primary key]
+  name varchar
+  description_short varchar
+  description varchar
+  price float
+  stock_state varchar
+  stock_count int
+  code varchar
+  avg_rating float
+  category_id int
+}
+
+Table reviews {
+  id int [primary key]
+  product_id int
+  user_id int
+  review varchar
+  rating int
+}
+
+Table wallets {
+  id int [primary key]
+  user_id int [unique]
+  balance float
+}
+
+Table transactions {
+  id int [primary key]
+  wallet_id int
+  amount float
+  transaction_type varchar
+  transaction_date timestamp
+}
+
+Ref: products.category_id > product_categories.id
+Ref: reviews.product_id > products.id
+Ref: reviews.user_id > _user.id
+Ref: wallets.user_id > _user.id
+Ref: transactions.wallet_id > wallets.id
