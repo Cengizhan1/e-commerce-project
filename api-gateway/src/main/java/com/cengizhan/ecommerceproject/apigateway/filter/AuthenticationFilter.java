@@ -36,14 +36,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     authHeader = authHeader.substring(7);
                 }
                 try {
-                    Integer userId = 1;
-                    userId = identityServiceClient.validateToken(authHeader);
-                    System.out.println(userId);
-//                    ServerWebExchange modifiedExchange = exchange.mutate()
-//                            .request(exchange.getRequest().mutate()
-//                                    .header("userId", userId.toString())
-//                                    .build())
-//                            .build();
+                    System.out.println("try fonksiyonuna girdi");
+                  identityServiceClient.validateToken(authHeader);
                 } catch (Exception e) {
                     System.out.println("invalid access...! " + e.getMessage());
                     throw new RuntimeException(e.getMessage());
