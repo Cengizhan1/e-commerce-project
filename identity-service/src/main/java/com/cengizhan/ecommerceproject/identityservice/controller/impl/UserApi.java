@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/identity-service/api/v1/user")
 @RequiredArgsConstructor
 public class UserApi {
         private final IUserService<UserDto, User> iUserService;
@@ -21,8 +21,4 @@ public class UserApi {
         return ResponseEntity.ok().body(iUserService.userServiceFindById(id));
     }
 
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<?> userCategoryApiUpdate(@PathVariable(name = "id") Integer id,@Valid @RequestBody UserDto userDto) {
-        return ResponseEntity.status(200).body(iUserService.userServiceUpdate(id, userDto));
-    }
 }

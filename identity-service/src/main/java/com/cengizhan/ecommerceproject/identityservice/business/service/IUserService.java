@@ -9,6 +9,5 @@ public interface IUserService<D,E> {
     // FIND BY
     public D userServiceFindById(Integer id);
 
-    // UPDATE
-    public D userServiceUpdate(Integer id,D d);
+
 }

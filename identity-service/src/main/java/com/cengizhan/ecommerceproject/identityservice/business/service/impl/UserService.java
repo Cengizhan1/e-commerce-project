@@ -40,17 +40,17 @@ public class UserService implements IUserService<UserDto, User> {
         return entityToDto(findUserEntity);
     }
 
-    @Override
-    public UserDto userServiceUpdate(Integer id, UserDto userDto) {
-        UserDto userFindDto = userServiceFindById(id);
-        if (userFindDto != null) {
-            User userEntity = dtoToEntity(userDto);
-            userEntity.setId(id);
-            userEntity.setFirstname(userDto.getFirstname());
-            userEntity.setLastname(userDto.getLastname());
-            userEntity.setEmail(userDto.getEmail());
-            iUserRepository.save(userEntity);
-        }
-        return userFindDto;
-    }
+//    @Override
+//    public UserDto userServiceUpdate(Integer id, UserDto userDto) {
+//        UserDto userFindDto = userServiceFindById(id);
+//        if (userFindDto != null) {
+//            User userEntity = dtoToEntity(userDto);
+//            userEntity.setId(id);
+//            userEntity.setFirstname(userDto.getFirstname());
+//            userEntity.setLastname(userDto.getLastname());
+//            userEntity.setEmail(userDto.getEmail());
+//            iUserRepository.save(userEntity);
+//        }
+//        return userFindDto;
+//    }
 }
