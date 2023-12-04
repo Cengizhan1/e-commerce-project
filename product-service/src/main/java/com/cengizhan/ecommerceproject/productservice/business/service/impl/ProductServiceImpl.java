@@ -94,6 +94,7 @@ public class ProductServiceImpl implements IProductService<ProductDto, ProductEn
             productEntity.setAvgRating(productDto.getAvgRating());
             productEntity.setRelationProductCategoryEntity(iProductCategoryRepository.findById(productDto.getCategoryId()).get());
             iProductRepository.save(productEntity);
+            productDto.setId(productEntity.getId());
         }
         return productDto;
     }
