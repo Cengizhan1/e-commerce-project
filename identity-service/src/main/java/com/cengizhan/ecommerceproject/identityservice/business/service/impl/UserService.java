@@ -56,6 +56,28 @@ public class UserService implements IUserService<UserDto, User> {
         return productServiceClient.getProductListByUserId(this.getUserId(), this.getBearerToken());
     }
 
+    @Override
+    public Product showProduct(Long id) {
+        return productServiceClient.getProduct(id, this.getBearerToken());
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        product.setUserId(this.getUserId());
+        return productServiceClient.createProduct(product, this.getBearerToken());
+    }
+
+    @Override
+    public Product updateProduct(Product product,Long id) {
+        product.setUserId(this.getUserId());
+        return productServiceClient.updateProduct(id,product, this.getBearerToken());
+    }
+
+    @Override
+    public Product deleteProduct(Long id) {
+        return productServiceClient.deleteProduct(id, this.getBearerToken());
+    }
+
     private String getBearerToken() {
         List<Token> tokens = this.getUserDetails().getTokens();
         int size = tokens.size();
@@ -70,18 +92,4 @@ public class UserService implements IUserService<UserDto, User> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (User) authentication.getPrincipal();
     }
-
-//    @Override
-//    public UserDto userServiceUpdate(Integer id, UserDto userDto) {
-//        UserDto userFindDto = userServiceFindById(id);
-//        if (userFindDto != null) {
-//            User userEntity = dtoToEntity(userDto);
-//            userEntity.setId(id);
-//            userEntity.setFirstname(userDto.getFirstname());
-//            userEntity.setLastname(userDto.getLastname());
-//            userEntity.setEmail(userDto.getEmail());
-//            iUserRepository.save(userEntity);
-//        }
-//        return userFindDto;
-//    }
 }

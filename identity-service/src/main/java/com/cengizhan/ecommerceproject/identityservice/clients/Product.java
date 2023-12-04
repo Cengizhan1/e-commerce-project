@@ -1,5 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.clients;
 
+import com.cengizhan.ecommerceproject.identityservice.enums.StockState;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -39,7 +40,7 @@ public class Product implements Serializable {
     @Min(value = 0, message = "{price.validation.constraints.Min.message}")
     private Float price;
 
-//    private StockState stockState;
+    private StockState stockState;
 
     private Integer stockCount;
 

@@ -15,5 +15,13 @@ public interface IUserService<D,E> {
 
     public List<Product> listUserProducts();
 
+    public Product showProduct(Long id);
+
+    public Product createProduct(Product product);
+
+    public Product updateProduct(Product product,Long id);
+
+    public Product deleteProduct(Long id);
+
 
 }

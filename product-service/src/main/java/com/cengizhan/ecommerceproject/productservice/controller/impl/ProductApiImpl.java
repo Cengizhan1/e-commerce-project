@@ -39,7 +39,6 @@ public class ProductApiImpl implements IProductApi<ProductDto> {
     @GetMapping(value = "/list/{categoryId}")
     public ResponseEntity<List<ProductDto>> productApiList(@PathVariable(name = "categoryId") Long categoryId,
                                                            @RequestHeader("userId") Integer userId) {
-        System.out.println(userId+ "*************************************************");
        return ResponseEntity.ok(iProductService.productServiceListByCategory(categoryId));
     }
 

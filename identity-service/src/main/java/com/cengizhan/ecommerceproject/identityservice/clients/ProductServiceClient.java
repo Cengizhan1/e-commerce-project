@@ -2,10 +2,7 @@ package com.cengizhan.ecommerceproject.identityservice.clients;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,6 +10,22 @@ import java.util.List;
 public interface ProductServiceClient {
 
     @GetMapping("/listByUserId/{userId}")
-    public  List<Product> getProductListByUserId(@PathVariable("userId") Integer userId,
-                                                 @RequestHeader("Authorization") String authorizationHeader);
+    public List<Product> getProductListByUserId(@PathVariable("userId") Integer userId,
+                                                @RequestHeader("Authorization") String authorizationHeader);
+
+    @GetMapping("/find/{id}")
+    public Product getProduct(@PathVariable("id") Long id,
+                              @RequestHeader("Authorization") String authorizationHeader);
+
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@PathVariable("id") Long id,@RequestBody Product product,
+                                 @RequestHeader("Authorization") String authorizationHeader);
+
+    @PostMapping("/create")
+    public Product createProduct(@RequestBody Product product, @RequestHeader("Authorization") String authorizationHeader);
+
+    @DeleteMapping("/delete/{id}")
+    public Product deleteProduct(@PathVariable("id") Long id,
+                                           @RequestHeader("Authorization") String authorizationHeader);
+
 }

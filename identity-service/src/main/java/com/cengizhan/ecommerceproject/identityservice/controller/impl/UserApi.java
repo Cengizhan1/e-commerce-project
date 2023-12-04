@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/identity-service/api/v1/user")
 @RequiredArgsConstructor
 public class UserApi {
-        private final IUserService<UserDto, User> iUserService;
+    private final IUserService<UserDto, User> iUserService;
 
 
     @GetMapping("//find/{id}")
@@ -27,6 +27,26 @@ public class UserApi {
     @GetMapping("/listUserProducts")
     public ResponseEntity<List<Product>> userApiListUserProducts() {
         return ResponseEntity.ok().body(iUserService.listUserProducts());
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> productCrerate(@Valid @RequestBody Product product) {
+        return ResponseEntity.ok().body(iUserService.createProduct(product));
+    }
+
+    @GetMapping("/show/{id}")
+    public ResponseEntity<?> productShow(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(iUserService.showProduct(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> productUpdate(@PathVariable("id") Long id, @RequestBody Product product) {
+        return ResponseEntity.ok().body(iUserService.updateProduct(product, id));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> productDelete(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(iUserService.deleteProduct(id));
     }
 
 }
