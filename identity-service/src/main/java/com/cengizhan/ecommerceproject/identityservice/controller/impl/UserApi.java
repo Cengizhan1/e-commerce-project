@@ -34,7 +34,7 @@ public class UserApi {
         return ResponseEntity.ok().body(iUserService.createProduct(product));
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<?> productShow(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(iUserService.showProduct(id));
     }
