@@ -4,6 +4,7 @@ package com.cengizhan.ecommerceproject.productservice.controller.impl;
 import com.cengizhan.ecommerceproject.productservice.business.dto.ProductDto;
 import com.cengizhan.ecommerceproject.productservice.business.service.IProductService;
 import com.cengizhan.ecommerceproject.productservice.controller.IProductApi;
+import com.cengizhan.ecommerceproject.productservice.data.entity.ProductEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping("/product-service/product/api/v1")
 public class ProductApiImpl implements IProductApi<ProductDto> {
     // injection
-    private final IProductService iProductService;
+    private final IProductService<ProductDto, ProductEntity> iProductService;
 
     // CREATE
     // /product/api/v1/create
@@ -64,5 +65,11 @@ public class ProductApiImpl implements IProductApi<ProductDto> {
     @DeleteMapping(value = "/all/delete")
     public ResponseEntity<?> productApiAllDelete() {
         return ResponseEntity.status(200).body(iProductService.productServiceDeleteAll());
+    }
+
+    @Override
+    @GetMapping(value = "/listByUserId/{userId}")
+    public ResponseEntity<List<ProductDto>> productApiListByUserId(@PathVariable(name = "userId") Integer userId) {
+        return ResponseEntity.ok(iProductService.productServiceListByUserId(userId));
     }
 }

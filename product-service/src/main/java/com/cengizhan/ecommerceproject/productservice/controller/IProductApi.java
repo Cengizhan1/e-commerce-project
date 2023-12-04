@@ -25,4 +25,7 @@ public interface IProductApi<D> {
     // ALL DELETE
     public ResponseEntity<?> productApiAllDelete();
 
+    public ResponseEntity<List<D>>  productApiListByUserId(Integer userId);
+
+
 }

@@ -1,5 +1,7 @@
 package com.cengizhan.ecommerceproject.productservice.business.service;
 
+import com.cengizhan.ecommerceproject.productservice.business.dto.ProductDto;
+
 import java.util.List;
 
 public interface IProductService<D,E> {
@@ -26,5 +28,7 @@ public interface IProductService<D,E> {
 
     // All DELETE
     public D productServiceDeleteAll();
+
+    public List<D> productServiceListByUserId(Integer userId);
 
 }

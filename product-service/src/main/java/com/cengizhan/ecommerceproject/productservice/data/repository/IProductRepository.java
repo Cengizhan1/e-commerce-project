@@ -13,4 +13,6 @@ public interface IProductRepository  extends CrudRepository<ProductEntity,Long> 
 
     List<ProductEntity> findByRelationProductCategoryEntityId(Long productCategoryId);
 
+    List<ProductEntity> findByUserId(Integer userId);
+
 }

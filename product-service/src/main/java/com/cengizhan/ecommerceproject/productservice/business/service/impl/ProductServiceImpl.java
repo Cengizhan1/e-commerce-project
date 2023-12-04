@@ -115,4 +115,15 @@ public class ProductServiceImpl implements IProductService<ProductDto, ProductEn
         iProductRepository.deleteAll();
         return null;
     }
+
+    @Override
+    public List<ProductDto> productServiceListByUserId(Integer userId) {
+        List<ProductEntity> entityList = iProductRepository.findByUserId(userId);
+        List<ProductDto> productDtoList = new ArrayList<>();
+        for (ProductEntity entity : entityList) {
+            ProductDto productDto = entityToDto(entity);
+            productDtoList.add(productDto);
+        }
+        return productDtoList;
+    }
 }

@@ -36,7 +36,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     authHeader = authHeader.substring(7);
                 }
                 try {
-                    System.out.println("try fonksiyonuna girdi");
                   identityServiceClient.validateToken(authHeader);
                 } catch (Exception e) {
                     System.out.println("invalid access...! " + e.getMessage());
