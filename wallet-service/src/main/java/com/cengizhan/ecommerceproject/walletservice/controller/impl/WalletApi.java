@@ -24,13 +24,13 @@ public class WalletApi implements IWalletApi<WalletDto> {
     }
 
     @Override
-    @GetMapping("//find/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<?> walletApiFindById(@PathVariable(name = "id" ) Long id) {
         return ResponseEntity.ok().body(iWalletService.walletServiceFindById(id));
     }
 
     @Override
-    @GetMapping("/findByUserId")
+    @GetMapping("/findByUserId/{userId}")
     public ResponseEntity<?> walletApiFindByUserId(@PathVariable(name = "userId") Integer userId) {
         return ResponseEntity.ok().body(iWalletService.walletServiceFindByUserId(userId));
     }

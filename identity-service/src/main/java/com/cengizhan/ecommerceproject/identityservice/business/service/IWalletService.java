@@ -3,7 +3,7 @@ package com.cengizhan.ecommerceproject.identityservice.business.service;
 public interface IWalletService<D> {
 
 
-    public D walletServiceCreate(D d);
+    public D walletServiceCreate();
 
     public D walletServiceFindById(Long id);
 
