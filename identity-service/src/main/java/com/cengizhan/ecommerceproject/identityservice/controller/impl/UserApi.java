@@ -3,7 +3,7 @@ package com.cengizhan.ecommerceproject.identityservice.controller.impl;
 
 import com.cengizhan.ecommerceproject.identityservice.business.dto.UserDto;
 import com.cengizhan.ecommerceproject.identityservice.business.service.IUserService;
-import com.cengizhan.ecommerceproject.identityservice.clients.Product;
+import com.cengizhan.ecommerceproject.identityservice.clients.classes.Product;
 import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

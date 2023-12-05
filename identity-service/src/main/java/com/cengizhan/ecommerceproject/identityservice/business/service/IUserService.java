@@ -1,6 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.business.service;
 
-import com.cengizhan.ecommerceproject.identityservice.clients.Product;
+import com.cengizhan.ecommerceproject.identityservice.clients.classes.Product;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.cengizhan.ecommerceproject.identityservice.clients;
 
+import com.cengizhan.ecommerceproject.identityservice.clients.classes.Product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -3,9 +3,8 @@ package com.cengizhan.ecommerceproject.identityservice.business.service.impl;
 import com.cengizhan.ecommerceproject.identityservice.bean.ModelMapperBean;
 import com.cengizhan.ecommerceproject.identityservice.business.dto.UserDto;
 import com.cengizhan.ecommerceproject.identityservice.business.service.IUserService;
-import com.cengizhan.ecommerceproject.identityservice.clients.Product;
+import com.cengizhan.ecommerceproject.identityservice.clients.classes.Product;
 import com.cengizhan.ecommerceproject.identityservice.clients.ProductServiceClient;
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
 import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
 import com.cengizhan.ecommerceproject.identityservice.data.repository.IUserRepository;
 import com.cengizhan.ecommerceproject.identityservice.exception.CustomException;
@@ -22,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 @Service
-public class UserService implements IUserService<UserDto, User> {
+public class UserService extends BaseService implements IUserService<UserDto, User> {
 
     private final ModelMapperBean modelMapperBean;
     private final IUserRepository iUserRepository;
@@ -76,20 +75,5 @@ public class UserService implements IUserService<UserDto, User> {
     @Override
     public Product deleteProduct(Long id) {
         return productServiceClient.deleteProduct(id, this.getBearerToken());
-    }
-
-    private String getBearerToken() {
-        List<Token> tokens = this.getUserDetails().getTokens();
-        int size = tokens.size();
-        return "Bearer " + tokens.get(size - 1).getToken();
-    }
-
-    private Integer getUserId() {
-        return this.getUserDetails().getId();
-    }
-
-    private User getUserDetails() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (User) authentication.getPrincipal();
     }
 }
