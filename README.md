@@ -31,9 +31,10 @@
      - date (Date)
   
 6. **User Service**
-7. **Payment Service**
-8. **Basket Service**
-9. **Order Service** (Opsiyonel)
+7. **Wallet Service**
+8. **Payment Service**
+9. **Basket Service**
+10. **Order Service** (Opsiyonel)
 
 ### Opsiyonel Geliştirmeler
 
