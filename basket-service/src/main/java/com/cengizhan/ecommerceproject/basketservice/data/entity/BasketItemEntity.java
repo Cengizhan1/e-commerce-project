@@ -22,10 +22,10 @@ public class BasketItemEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "product_id",nullable = false)
-    private Integer productId;
+    private Long productId;
 
     @Column(name = "quantity",nullable = false)
-    private Integer quantity;
+    private Short quantity;
 
     @ManyToOne(optional = false)
     @JoinColumn(name="basket_id",nullable = false)
