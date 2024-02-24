@@ -1,18 +1,12 @@
 package com.cengizhan.ecommerceproject.productservice.data.repository;
 
-import com.cengizhan.ecommerceproject.productservice.data.entity.ProductEntity;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
+import com.cengizhan.ecommerceproject.productservice.data.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface IProductRepository  extends CrudRepository<ProductEntity,Long> {
-    Optional<ProductEntity> findByName(String name);
+public interface IProductRepository  extends JpaRepository<Product,Long> {
+    Optional<Product> findByName(String name);
 
-    List<ProductEntity> findByRelationProductCategoryEntityId(Long productCategoryId);
-
-    List<ProductEntity> findByUserId(Integer userId);
-
+    List<Product> findByRelationProductCategoryId(Long productCategoryId);
 }
