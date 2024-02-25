@@ -25,7 +25,8 @@ public class BasketController {
         return ResponseEntity.ok().build();
     }
     @PostMapping("/add/{userId}")
-    public ResponseEntity<Void> addProductToBasket(@PathVariable("userId") Integer userId, @RequestBody BasketItemDto basketItemDto, HttpServletRequest request) {
+    public ResponseEntity<Void> addProductToBasket(@PathVariable("userId") Integer userId,
+                                                   @RequestBody BasketItemDto basketItemDto) {
         service.addProductToBasket(basketItemDto.productId(), basketItemDto.quantity(), userId);
         return ResponseEntity.ok().build();
     }
