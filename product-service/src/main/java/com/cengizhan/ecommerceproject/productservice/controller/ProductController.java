@@ -30,13 +30,13 @@ public class ProductController{
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<?> findById(@NotBlank @PathVariable(name = "id") Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
     @GetMapping(value = "/{id}/add-basket/quantity/{quantity}")
     public ResponseEntity<Void> addBasket(@NotBlank @PathVariable(name = "id") Long id,
-                                          @NotBlank @PathVariable(name = "quantity") int quantity) {
+                                          @NotBlank @PathVariable(name = "quantity") short quantity) {
         service.addBasket(id,quantity);
         return ResponseEntity.ok().build();
     }

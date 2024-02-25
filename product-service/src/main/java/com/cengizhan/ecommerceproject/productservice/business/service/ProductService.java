@@ -1,37 +1,42 @@
 package com.cengizhan.ecommerceproject.productservice.business.service;
 
 import com.cengizhan.ecommerceproject.productservice.bean.ModelMapperBean;
+import com.cengizhan.ecommerceproject.productservice.business.dto.BasketItemDto;
+import com.cengizhan.ecommerceproject.productservice.client.BasketClient;
 import com.cengizhan.ecommerceproject.productservice.data.entity.Product;
 import com.cengizhan.ecommerceproject.productservice.business.dto.ProductDto;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IProductCategoryRepository;
 import com.cengizhan.ecommerceproject.productservice.data.repository.IProductRepository;
-import com.cengizhan.ecommerceproject.productservice.exception.CustomException;
-import com.cengizhan.ecommerceproject.productservice.exception.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import com.cengizhan.ecommerceproject.productservice.exception.ProductNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
-@Log4j2
+
 @Service
 public class ProductService {
 
     private final IProductRepository iProductRepository;
     private final ModelMapperBean modelMapperBean;
+    private final BasketClient basketClient;
 
-    // MODEL MAPPER
-    
-    public ProductDto entityToDto(Product product) {
-        return modelMapperBean.modelMapperMethod().map(product,ProductDto.class);
+    public ProductService(IProductRepository iProductRepository,
+                          ModelMapperBean modelMapperBean,
+                          BasketClient basketClient) {
+        this.iProductRepository = iProductRepository;
+        this.modelMapperBean = modelMapperBean;
+        this.basketClient = basketClient;
     }
 
-    
+    // MODEL MAPPER
+
+    public ProductDto entityToDto(Product product) {
+        return modelMapperBean.modelMapperMethod().map(product, ProductDto.class);
+    }
+
+
     public Product dtoToEntity(ProductDto productDto) {
-        return  modelMapperBean.modelMapperMethod().map(productDto, Product.class);
+        return modelMapperBean.modelMapperMethod().map(productDto, Product.class);
     }
 
     // LIST
@@ -70,27 +75,26 @@ public class ProductService {
 
     // FIND
     public ProductDto findById(Long id) {
-        Product findProduct = null;
-        if (id != null) {
-            findProduct = iProductRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException(id + " nolu id yoktur"));
-        } else {
-            throw new CustomException("İd null olarak geldi");
-        }
+        Product findProduct = iProductRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found for id: " + id));
         return entityToDto(findProduct);
     }
 
 
-    public void addBasket(Long id, int quantity) {
+    public void addBasket(Long id, short quantity) {
+        basketClient.addProductToBasket(1, new BasketItemDto(id, quantity));
     }
 
     public void removeBasket(Long id) {
+        basketClient.removeProductFromBasket(1, id);
     }
 
     public void clearBasket() {
+        basketClient.clearBasket(1);
     }
 
     public List<ProductDto> getBasket() {
+        basketClient.listProductsInBasket(1);
         return null;
     }
 }
