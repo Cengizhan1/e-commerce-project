@@ -5,8 +5,7 @@ import com.cengizhan.ecommerceproject.productservice.business.dto.ReviewDto;
 import com.cengizhan.ecommerceproject.productservice.data.entity.Review;
 import com.cengizhan.ecommerceproject.productservice.data.repository.IProductRepository;
 import com.cengizhan.ecommerceproject.productservice.data.repository.IReviewRepository;
-import com.cengizhan.ecommerceproject.productservice.exception.CustomException;
-import com.cengizhan.ecommerceproject.productservice.exception.ResourceNotFoundException;
+import com.cengizhan.ecommerceproject.productservice.exception.ReviewNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
@@ -66,13 +65,8 @@ public class ReviewService{
 
     // FIND
     public ReviewDto reviewServiceFindById(Long id) {
-        Review findReview = null;
-        if (id != null) {
-            findReview = iReviewRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException(id + " nolu id yoktur"));
-        } else {
-            throw new CustomException("İd null olarak geldi");
-        }
+        Review findReview = iReviewRepository.findById(id)
+                    .orElseThrow(() -> new ReviewNotFoundException(id + " nolu id yoktur"));
         return entityToDto(findReview);
     }
 

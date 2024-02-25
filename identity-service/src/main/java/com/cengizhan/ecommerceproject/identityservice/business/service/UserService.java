@@ -24,8 +24,6 @@ public class UserService extends BaseService {
     }
 
     public UserDto userFindById(Integer id) {
-        System.out.println("qwdqjdkmqwkdmqkwmdkqwmdkq");
-        System.out.println(id);
         User findUserEntity = iUserRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException(id + " nolu id yoktur"));
         return entityToDto(findUserEntity);

@@ -36,24 +36,26 @@ public class ProductController{
 
     @GetMapping(value = "/{id}/add-basket/quantity/{quantity}")
     public ResponseEntity<Void> addBasket(@NotBlank @PathVariable(name = "id") Long id,
-                                          @NotBlank @PathVariable(name = "quantity") short quantity) {
-        service.addBasket(id,quantity);
+                                          @NotBlank @PathVariable(name = "quantity") Short quantity,
+                                          @RequestHeader(name = "Authorization") String token) {
+        service.addBasket(id,quantity,token);
         return ResponseEntity.ok().build();
     }
     @GetMapping(value = "/{id}/remove-basket")
-    public ResponseEntity<Void> removeBasket(@NotBlank @PathVariable(name = "id") Long id) {
-        service.removeBasket(id);
+    public ResponseEntity<Void> removeBasket(@NotBlank @PathVariable(name = "id") Long id,
+                                            @RequestHeader(name = "Authorization") String token) {
+        service.removeBasket(id,token);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/clear-basket")
-    public ResponseEntity<Void> clearBasket(){
-        service.clearBasket();
+    public ResponseEntity<Void> clearBasket(@RequestHeader(name = "Authorization") String token) {
+        service.clearBasket(token);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/get-basket")
-    public ResponseEntity<List<ProductDto>> getBasket(){
-        return ResponseEntity.ok(service.getBasket());
+    public ResponseEntity<List<ProductDto>> getBasket(@RequestHeader(name = "Authorization") String token) {
+        return ResponseEntity.ok(service.getBasket(token));
     }
 }

@@ -31,10 +31,12 @@ public class BasketItemService {
 
     protected void delete(Long productId, Long basketId) {
         BasketItem basketItem = iBasketItemRepository.
-                findByProductIdAndRelationBasketId(productId, basketId).orElseThrow(
+                findFirstByProductIdAndRelationBasketId(productId, basketId).orElseThrow(
                         () -> new BasketItemNotFoundException(
                                 "Basket item not found for product: " + productId)
                 );
+        System.out.println("qlwödlqwö");
+        System.out.println(basketItem.getQuantity());
         iBasketItemRepository.delete(basketItem);
     }
 

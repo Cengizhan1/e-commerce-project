@@ -81,20 +81,20 @@ public class ProductService {
     }
 
 
-    public void addBasket(Long id, short quantity) {
-        basketClient.addProductToBasket(1, new BasketItemDto(id, quantity));
+    public void addBasket(Long id, Short quantity, String bearerToken) {
+        basketClient.addProductToBasket(1, new BasketItemDto(id, quantity), bearerToken);
     }
 
-    public void removeBasket(Long id) {
-        basketClient.removeProductFromBasket(1, id);
+    public void removeBasket(Long id, String bearerToken) {
+        basketClient.removeProductFromBasket(1, id,bearerToken);
     }
 
-    public void clearBasket() {
-        basketClient.clearBasket(1);
+    public void clearBasket(String bearerToken) {
+        basketClient.clearBasket(1,bearerToken);
     }
 
-    public List<ProductDto> getBasket() {
-        basketClient.listProductsInBasket(1);
+    public List<ProductDto> getBasket(String bearerToken) {
+        basketClient.listProductsInBasket(1,bearerToken);
         return null;
     }
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 
 public interface IBasketItemRepository extends JpaRepository<BasketItem, Long> {
-    Optional<BasketItem> findByProductIdAndRelationBasketId(Long productId, Long basketId);
+    Optional<BasketItem> findFirstByProductIdAndRelationBasketId(Long productId, Long basketId);
     void deleteAllByRelationBasketId(Long basketId);
     List<BasketItem> findAllByRelationBasketId(Long basketId);
 }

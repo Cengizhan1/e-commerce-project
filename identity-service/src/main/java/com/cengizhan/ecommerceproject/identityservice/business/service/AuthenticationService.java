@@ -3,6 +3,7 @@ package com.cengizhan.ecommerceproject.identityservice.business.service;
 import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationRequest;
 import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationResponse;
 import com.cengizhan.ecommerceproject.identityservice.auth.RegisterRequest;
+import com.cengizhan.ecommerceproject.identityservice.clients.BasketClient;
 import com.cengizhan.ecommerceproject.identityservice.config.JwtService;
 import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
 import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
@@ -29,6 +30,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final BasketClient basketClient;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -42,6 +44,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
+        basketClient.createBasket(savedUser.getId());
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
