@@ -23,29 +23,33 @@ public class OrderController {
     }
 
     @PostMapping("/user/{userId}/start")
-    public ResponseEntity<Void> start(@NotBlank @PathVariable("userId") Integer userId,@RequestBody NewOrderRequest newOrderRequest){
+    public ResponseEntity<Void> start(@NotBlank @PathVariable("userId") Integer userId,
+                                      @RequestBody NewOrderRequest newOrderRequest) {
         service.start(userId, newOrderRequest);
-        ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
+
     @GetMapping("/user/{userId}/active")
-    public ResponseEntity<OrderDto> getActiveOrder(@NotBlank @PathVariable("userId") Integer userId){
+    public ResponseEntity<OrderDto> getActiveOrder(@NotBlank @PathVariable("userId") Integer userId) {
         return ResponseEntity.ok(service.getActiveOrder(userId));
     }
+
     @GetMapping("user/{userId}/all")
-    public ResponseEntity<List<OrderDto>> getAllOrders(@NotBlank Integer userId){
+    public ResponseEntity<List<OrderDto>> getAllOrders(@NotBlank Integer userId) {
         return ResponseEntity.ok(service.getAllOrders(userId));
     }
 
     @PostMapping("/{orderId}/orderState/{orderState}")
     public ResponseEntity<Void> updateOrderState(@NotBlank @PathVariable("orderId") Long orderId,
-                                                 @NotBlank @PathVariable("orderState") OrderStateEnum orderState){
+                                                 @NotBlank @PathVariable("orderState") OrderStateEnum orderState) {
         service.updateOrderState(orderId, orderState);
-        ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
+
     @PostMapping("/{orderId}/paymentState/{paymentState}")
     public ResponseEntity<Void> updatePaymentState(@NotBlank @PathVariable("orderId") Long orderId,
-                                                   @NotBlank @PathVariable("paymentState") PaymentStateEnum paymentState){
+                                                   @NotBlank @PathVariable("paymentState") PaymentStateEnum paymentState) {
         service.updatePaymentState(orderId, paymentState);
-        ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 }
