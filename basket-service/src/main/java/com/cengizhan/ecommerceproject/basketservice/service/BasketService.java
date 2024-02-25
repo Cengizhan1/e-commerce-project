@@ -41,7 +41,7 @@ public class BasketService{
     }
 
     
-    public void removeAllProductsFromBasket(Integer userId) {
+    public void clearBasket(Integer userId) {
         Basket basket = findBasketByUserId(userId);
         basketItemService.deleteAllByBasketId(basket.getId());
     }

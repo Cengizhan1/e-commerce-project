@@ -79,6 +79,18 @@ public class ProductService {
         }
         return entityToDto(findProduct);
     }
-    
 
+
+    public void addBasket(Long id, int quantity) {
+    }
+
+    public void removeBasket(Long id) {
+    }
+
+    public void clearBasket() {
+    }
+
+    public List<ProductDto> getBasket() {
+        return null;
+    }
 }

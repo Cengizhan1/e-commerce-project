@@ -37,8 +37,8 @@ public class BasketController {
     }
 
     @PostMapping("/remove/{userId}")
-    public ResponseEntity<Void> removeProductFromBasket(@PathVariable("userId") Integer userId) {
-        service.removeAllProductsFromBasket(userId);
+    public ResponseEntity<Void> clearBasket(@PathVariable("userId") Integer userId) {
+        service.clearBasket(userId);
         return ResponseEntity.ok().build();
     }
 
