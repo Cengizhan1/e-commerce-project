@@ -1,0 +1,7 @@
+package com.cengizhan.ecommerceproject.identityservice.exception;
+
+public record ExceptionMessage(String timestamp,
+                               int status,
+                               String error,
+                               String message,
+                               String path){}
