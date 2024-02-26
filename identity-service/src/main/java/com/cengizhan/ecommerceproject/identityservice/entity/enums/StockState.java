@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.identityservice.enums;
+package com.cengizhan.ecommerceproject.identityservice.entity.enums;
 
 import lombok.RequiredArgsConstructor;
 

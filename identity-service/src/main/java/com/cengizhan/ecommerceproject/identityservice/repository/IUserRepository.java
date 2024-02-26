@@ -1,6 +1,6 @@
-package com.cengizhan.ecommerceproject.identityservice.data.repository;
+package com.cengizhan.ecommerceproject.identityservice.repository;
 
-import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
+import com.cengizhan.ecommerceproject.identityservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

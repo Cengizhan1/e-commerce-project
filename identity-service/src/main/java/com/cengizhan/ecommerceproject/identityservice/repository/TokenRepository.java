@@ -1,6 +1,6 @@
-package com.cengizhan.ecommerceproject.identityservice.data.repository;
+package com.cengizhan.ecommerceproject.identityservice.repository;
 
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
+import com.cengizhan.ecommerceproject.identityservice.entity.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

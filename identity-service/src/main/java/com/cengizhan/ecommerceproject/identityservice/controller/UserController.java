@@ -1,11 +1,10 @@
 package com.cengizhan.ecommerceproject.identityservice.controller;
 
-import com.cengizhan.ecommerceproject.identityservice.business.service.UserService;
+import com.cengizhan.ecommerceproject.identityservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController

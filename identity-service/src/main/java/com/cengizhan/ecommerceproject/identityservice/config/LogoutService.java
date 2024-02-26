@@ -1,6 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.config;
 
-import com.cengizhan.ecommerceproject.identityservice.data.repository.TokenRepository;
+import com.cengizhan.ecommerceproject.identityservice.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

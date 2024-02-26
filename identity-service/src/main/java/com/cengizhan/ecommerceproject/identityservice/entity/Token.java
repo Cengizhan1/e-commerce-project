@@ -1,6 +1,6 @@
-package com.cengizhan.ecommerceproject.identityservice.data.entity;
+package com.cengizhan.ecommerceproject.identityservice.entity;
 
-import com.cengizhan.ecommerceproject.identityservice.enums.TokenType;
+import com.cengizhan.ecommerceproject.identityservice.entity.enums.TokenType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

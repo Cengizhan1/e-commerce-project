@@ -35,4 +35,9 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
         logger.info(String.format("Api validation error: %s",errors));
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<?> handle(UserNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

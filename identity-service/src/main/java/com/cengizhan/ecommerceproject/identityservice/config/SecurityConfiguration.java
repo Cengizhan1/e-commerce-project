@@ -13,9 +13,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static com.cengizhan.ecommerceproject.identityservice.data.entity.Role.ADMIN;
-import static com.cengizhan.ecommerceproject.identityservice.data.entity.Role.MANAGER;
-import static com.cengizhan.ecommerceproject.identityservice.enums.Permission.*;
+import static com.cengizhan.ecommerceproject.identityservice.entity.Role.ADMIN;
+import static com.cengizhan.ecommerceproject.identityservice.entity.Role.MANAGER;
+import static com.cengizhan.ecommerceproject.identityservice.entity.enums.Permission.*;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration

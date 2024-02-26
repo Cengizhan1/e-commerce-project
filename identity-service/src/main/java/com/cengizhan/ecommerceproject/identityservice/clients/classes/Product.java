@@ -1,6 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.clients.classes;
 
-import com.cengizhan.ecommerceproject.identityservice.enums.StockState;
+import com.cengizhan.ecommerceproject.identityservice.entity.enums.StockState;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

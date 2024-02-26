@@ -1,13 +1,11 @@
 package com.cengizhan.ecommerceproject.identityservice.config;
 
-import com.cengizhan.ecommerceproject.identityservice.data.repository.TokenRepository;
-import com.netflix.discovery.converters.Auto;
+import com.cengizhan.ecommerceproject.identityservice.repository.TokenRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

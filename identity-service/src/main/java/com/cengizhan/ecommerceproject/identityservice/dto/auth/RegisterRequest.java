@@ -1,6 +1,6 @@
-package com.cengizhan.ecommerceproject.identityservice.auth;
+package com.cengizhan.ecommerceproject.identityservice.dto.auth;
 
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Role;
+import com.cengizhan.ecommerceproject.identityservice.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

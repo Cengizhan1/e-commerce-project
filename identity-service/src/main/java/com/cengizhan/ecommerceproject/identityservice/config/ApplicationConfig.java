@@ -1,6 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.config;
 
-import com.cengizhan.ecommerceproject.identityservice.data.repository.IUserRepository;
+import com.cengizhan.ecommerceproject.identityservice.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

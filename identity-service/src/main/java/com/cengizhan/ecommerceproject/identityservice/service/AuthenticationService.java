@@ -1,15 +1,15 @@
-package com.cengizhan.ecommerceproject.identityservice.business.service;
+package com.cengizhan.ecommerceproject.identityservice.service;
 
-import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationRequest;
-import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationResponse;
-import com.cengizhan.ecommerceproject.identityservice.auth.RegisterRequest;
+import com.cengizhan.ecommerceproject.identityservice.dto.auth.AuthenticationRequest;
+import com.cengizhan.ecommerceproject.identityservice.dto.auth.AuthenticationResponse;
+import com.cengizhan.ecommerceproject.identityservice.dto.auth.RegisterRequest;
 import com.cengizhan.ecommerceproject.identityservice.clients.BasketClient;
 import com.cengizhan.ecommerceproject.identityservice.config.JwtService;
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
-import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
-import com.cengizhan.ecommerceproject.identityservice.data.repository.TokenRepository;
-import com.cengizhan.ecommerceproject.identityservice.data.repository.IUserRepository;
-import com.cengizhan.ecommerceproject.identityservice.enums.TokenType;
+import com.cengizhan.ecommerceproject.identityservice.entity.Token;
+import com.cengizhan.ecommerceproject.identityservice.entity.User;
+import com.cengizhan.ecommerceproject.identityservice.repository.TokenRepository;
+import com.cengizhan.ecommerceproject.identityservice.repository.IUserRepository;
+import com.cengizhan.ecommerceproject.identityservice.entity.enums.TokenType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

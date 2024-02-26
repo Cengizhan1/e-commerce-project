@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.identityservice.business.service;
+package com.cengizhan.ecommerceproject.identityservice.service;
 
 import org.springframework.stereotype.Service;
 

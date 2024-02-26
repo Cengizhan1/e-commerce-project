@@ -1,6 +1,6 @@
-package com.cengizhan.ecommerceproject.identityservice.data.entity;
+package com.cengizhan.ecommerceproject.identityservice.entity;
 
-import com.cengizhan.ecommerceproject.identityservice.enums.Permission;
+import com.cengizhan.ecommerceproject.identityservice.entity.enums.Permission;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.cengizhan.ecommerceproject.identityservice.enums.Permission.*;
+import static com.cengizhan.ecommerceproject.identityservice.entity.enums.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {

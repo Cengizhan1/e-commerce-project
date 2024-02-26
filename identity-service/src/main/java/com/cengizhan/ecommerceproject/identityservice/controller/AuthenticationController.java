@@ -1,9 +1,9 @@
 package com.cengizhan.ecommerceproject.identityservice.controller;
 
-import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationRequest;
-import com.cengizhan.ecommerceproject.identityservice.auth.AuthenticationResponse;
-import com.cengizhan.ecommerceproject.identityservice.auth.RegisterRequest;
-import com.cengizhan.ecommerceproject.identityservice.business.service.AuthenticationService;
+import com.cengizhan.ecommerceproject.identityservice.dto.auth.AuthenticationRequest;
+import com.cengizhan.ecommerceproject.identityservice.dto.auth.AuthenticationResponse;
+import com.cengizhan.ecommerceproject.identityservice.dto.auth.RegisterRequest;
+import com.cengizhan.ecommerceproject.identityservice.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

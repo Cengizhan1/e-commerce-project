@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.identityservice.data.entity;
+package com.cengizhan.ecommerceproject.identityservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

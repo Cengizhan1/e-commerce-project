@@ -1,10 +1,10 @@
-package com.cengizhan.ecommerceproject.identityservice.business.service;
+package com.cengizhan.ecommerceproject.identityservice.service;
 
 
-import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
+import com.cengizhan.ecommerceproject.identityservice.entity.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
+import com.cengizhan.ecommerceproject.identityservice.entity.Token;
 
 import java.util.List;
 

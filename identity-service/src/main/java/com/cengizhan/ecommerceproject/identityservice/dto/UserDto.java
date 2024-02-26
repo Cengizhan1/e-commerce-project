@@ -1,13 +1,9 @@
-package com.cengizhan.ecommerceproject.identityservice.business.dto;
+package com.cengizhan.ecommerceproject.identityservice.dto;
 
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Role;
-import com.cengizhan.ecommerceproject.identityservice.data.entity.Token;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @Builder

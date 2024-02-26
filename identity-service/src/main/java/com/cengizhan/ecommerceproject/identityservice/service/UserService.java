@@ -1,9 +1,9 @@
-package com.cengizhan.ecommerceproject.identityservice.business.service;
+package com.cengizhan.ecommerceproject.identityservice.service;
 
 import com.cengizhan.ecommerceproject.identityservice.bean.ModelMapperBean;
-import com.cengizhan.ecommerceproject.identityservice.business.dto.UserDto;
-import com.cengizhan.ecommerceproject.identityservice.data.entity.User;
-import com.cengizhan.ecommerceproject.identityservice.data.repository.IUserRepository;
+import com.cengizhan.ecommerceproject.identityservice.dto.UserDto;
+import com.cengizhan.ecommerceproject.identityservice.entity.User;
+import com.cengizhan.ecommerceproject.identityservice.repository.IUserRepository;
 import com.cengizhan.ecommerceproject.identityservice.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
