@@ -1,8 +1,8 @@
 package com.cengizhan.ecommerceproject.productservice.controller;
 
 
-import com.cengizhan.ecommerceproject.productservice.business.dto.ProductDto;
-import com.cengizhan.ecommerceproject.productservice.business.service.ProductService;
+import com.cengizhan.ecommerceproject.productservice.dto.ProductDto;
+import com.cengizhan.ecommerceproject.productservice.service.ProductService;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

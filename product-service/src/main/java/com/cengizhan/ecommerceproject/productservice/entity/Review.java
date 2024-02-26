@@ -1,6 +1,5 @@
-package com.cengizhan.ecommerceproject.productservice.data.entity;
+package com.cengizhan.ecommerceproject.productservice.entity;
 
-import com.cengizhan.ecommerceproject.productservice.data.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

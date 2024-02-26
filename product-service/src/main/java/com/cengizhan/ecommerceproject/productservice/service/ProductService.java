@@ -1,11 +1,11 @@
-package com.cengizhan.ecommerceproject.productservice.business.service;
+package com.cengizhan.ecommerceproject.productservice.service;
 
 import com.cengizhan.ecommerceproject.productservice.bean.ModelMapperBean;
-import com.cengizhan.ecommerceproject.productservice.business.dto.BasketItemDto;
+import com.cengizhan.ecommerceproject.productservice.dto.BasketItemDto;
 import com.cengizhan.ecommerceproject.productservice.client.BasketClient;
-import com.cengizhan.ecommerceproject.productservice.data.entity.Product;
-import com.cengizhan.ecommerceproject.productservice.business.dto.ProductDto;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IProductRepository;
+import com.cengizhan.ecommerceproject.productservice.entity.Product;
+import com.cengizhan.ecommerceproject.productservice.dto.ProductDto;
+import com.cengizhan.ecommerceproject.productservice.repository.IProductRepository;
 import com.cengizhan.ecommerceproject.productservice.exception.ProductNotFoundException;
 import org.springframework.stereotype.Service;
 

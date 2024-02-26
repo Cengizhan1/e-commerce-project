@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.productservice.data;
+package com.cengizhan.ecommerceproject.productservice.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

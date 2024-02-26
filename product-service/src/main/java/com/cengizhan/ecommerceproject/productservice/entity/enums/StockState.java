@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.productservice.enums;
+package com.cengizhan.ecommerceproject.productservice.entity.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

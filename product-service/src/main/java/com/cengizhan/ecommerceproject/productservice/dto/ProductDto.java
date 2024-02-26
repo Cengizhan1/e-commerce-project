@@ -1,6 +1,6 @@
-    package com.cengizhan.ecommerceproject.productservice.business.dto;
+    package com.cengizhan.ecommerceproject.productservice.dto;
 
-    import com.cengizhan.ecommerceproject.productservice.enums.StockState;
+    import com.cengizhan.ecommerceproject.productservice.entity.enums.StockState;
     import jakarta.validation.constraints.Min;
     import jakarta.validation.constraints.NotEmpty;
     import jakarta.validation.constraints.Size;
@@ -18,7 +18,7 @@
     @AllArgsConstructor
     @Builder
     @Log4j2
-    public class ProductCategoryDto implements Serializable {
+    public class ProductDto implements Serializable {
 
         @Serial
         private static final long serialVersionUID = 1L;
@@ -35,4 +35,18 @@
 
         @Size(min=10,message = "{description.validation.constraints.minLength.message}")
         private String description;
+
+        @NotEmpty(message ="{price.validation.constraints.NotNull.message}")
+        @Min(value = 0,message = "{price.validation.constraints.Min.message}")
+        private Float price;
+
+        private StockState stockState;
+
+        private Integer stockCount;
+
+        private String code;
+
+        private Float avgRating;
+        @NotEmpty(message ="{categoryId.validation.constraints.NotNull.message}")
+        private Long categoryId;
     }

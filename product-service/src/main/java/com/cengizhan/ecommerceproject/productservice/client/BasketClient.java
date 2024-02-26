@@ -1,7 +1,6 @@
 package com.cengizhan.ecommerceproject.productservice.client;
 
-import com.cengizhan.ecommerceproject.productservice.business.dto.BasketItemDto;
-import jakarta.servlet.http.HttpServletRequest;
+import com.cengizhan.ecommerceproject.productservice.dto.BasketItemDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

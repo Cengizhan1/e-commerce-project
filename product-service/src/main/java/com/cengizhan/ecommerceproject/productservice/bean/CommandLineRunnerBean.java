@@ -1,12 +1,12 @@
 package com.cengizhan.ecommerceproject.productservice.bean;
 
-import com.cengizhan.ecommerceproject.productservice.data.entity.ProductCategory;
-import com.cengizhan.ecommerceproject.productservice.data.entity.Product;
-import com.cengizhan.ecommerceproject.productservice.data.entity.Review;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IProductCategoryRepository;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IProductRepository;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IReviewRepository;
-import com.cengizhan.ecommerceproject.productservice.enums.StockState;
+import com.cengizhan.ecommerceproject.productservice.entity.ProductCategory;
+import com.cengizhan.ecommerceproject.productservice.entity.Product;
+import com.cengizhan.ecommerceproject.productservice.entity.Review;
+import com.cengizhan.ecommerceproject.productservice.repository.IProductCategoryRepository;
+import com.cengizhan.ecommerceproject.productservice.repository.IProductRepository;
+import com.cengizhan.ecommerceproject.productservice.repository.IReviewRepository;
+import com.cengizhan.ecommerceproject.productservice.entity.enums.StockState;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;

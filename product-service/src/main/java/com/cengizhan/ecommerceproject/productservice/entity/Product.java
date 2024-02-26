@@ -1,7 +1,6 @@
-package com.cengizhan.ecommerceproject.productservice.data.entity;
+package com.cengizhan.ecommerceproject.productservice.entity;
 
-import com.cengizhan.ecommerceproject.productservice.data.BaseEntity;
-import com.cengizhan.ecommerceproject.productservice.enums.StockState;
+import com.cengizhan.ecommerceproject.productservice.entity.enums.StockState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

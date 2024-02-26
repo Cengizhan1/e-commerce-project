@@ -1,9 +1,9 @@
-package com.cengizhan.ecommerceproject.productservice.business.service;
+package com.cengizhan.ecommerceproject.productservice.service;
 
 import com.cengizhan.ecommerceproject.productservice.bean.ModelMapperBean;
-import com.cengizhan.ecommerceproject.productservice.business.dto.ProductCategoryDto;
-import com.cengizhan.ecommerceproject.productservice.data.entity.ProductCategory;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IProductCategoryRepository;
+import com.cengizhan.ecommerceproject.productservice.dto.ProductCategoryDto;
+import com.cengizhan.ecommerceproject.productservice.entity.ProductCategory;
+import com.cengizhan.ecommerceproject.productservice.repository.IProductCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

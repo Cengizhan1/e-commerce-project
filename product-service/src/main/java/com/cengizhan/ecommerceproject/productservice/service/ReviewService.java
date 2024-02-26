@@ -1,10 +1,10 @@
-package com.cengizhan.ecommerceproject.productservice.business.service;
+package com.cengizhan.ecommerceproject.productservice.service;
 
 import com.cengizhan.ecommerceproject.productservice.bean.ModelMapperBean;
-import com.cengizhan.ecommerceproject.productservice.business.dto.ReviewDto;
-import com.cengizhan.ecommerceproject.productservice.data.entity.Review;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IProductRepository;
-import com.cengizhan.ecommerceproject.productservice.data.repository.IReviewRepository;
+import com.cengizhan.ecommerceproject.productservice.dto.ReviewDto;
+import com.cengizhan.ecommerceproject.productservice.entity.Review;
+import com.cengizhan.ecommerceproject.productservice.repository.IProductRepository;
+import com.cengizhan.ecommerceproject.productservice.repository.IReviewRepository;
 import com.cengizhan.ecommerceproject.productservice.exception.ReviewNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

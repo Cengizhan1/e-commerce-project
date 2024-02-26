@@ -1,7 +1,7 @@
 package com.cengizhan.ecommerceproject.productservice.controller;
 
-import com.cengizhan.ecommerceproject.productservice.business.dto.ProductCategoryDto;
-import com.cengizhan.ecommerceproject.productservice.business.service.ProductCategoryService;
+import com.cengizhan.ecommerceproject.productservice.dto.ProductCategoryDto;
+import com.cengizhan.ecommerceproject.productservice.service.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;

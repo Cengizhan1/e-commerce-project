@@ -1,6 +1,6 @@
-package com.cengizhan.ecommerceproject.productservice.data.repository;
+package com.cengizhan.ecommerceproject.productservice.repository;
 
-import com.cengizhan.ecommerceproject.productservice.data.entity.ProductCategory;
+import com.cengizhan.ecommerceproject.productservice.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

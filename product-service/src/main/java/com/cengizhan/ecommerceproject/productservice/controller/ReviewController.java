@@ -1,9 +1,8 @@
 package com.cengizhan.ecommerceproject.productservice.controller;
 
 
-import com.cengizhan.ecommerceproject.productservice.business.dto.ReviewDto;
-import com.cengizhan.ecommerceproject.productservice.business.service.ReviewService;
-import com.cengizhan.ecommerceproject.productservice.data.entity.Review;
+import com.cengizhan.ecommerceproject.productservice.dto.ReviewDto;
+import com.cengizhan.ecommerceproject.productservice.service.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

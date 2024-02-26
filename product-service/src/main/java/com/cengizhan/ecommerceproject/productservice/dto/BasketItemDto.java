@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.productservice.business.dto;
+package com.cengizhan.ecommerceproject.productservice.dto;
 
 public record BasketItemDto(
         Long productId,
