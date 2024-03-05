@@ -1,5 +1,6 @@
 package com.cengizhan.ecommerceproject.identityservice.service;
 
+import com.cengizhan.ecommerceproject.identityservice.controller.AuthenticationController;
 import com.cengizhan.ecommerceproject.identityservice.dto.auth.AuthenticationRequest;
 import com.cengizhan.ecommerceproject.identityservice.dto.auth.AuthenticationResponse;
 import com.cengizhan.ecommerceproject.identityservice.dto.auth.RegisterRequest;
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,13 +27,15 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationService extends BaseService{
     private final IUserRepository repository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final BasketClient basketClient;
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -124,7 +129,12 @@ public class AuthenticationService {
         }
     }
 
-    public void validateToken(String token) {
-        jwtService.validateToken(token);
+    public Integer validateToken(String token) {
+        try {
+            return jwtService.validateToken(token);
+        } catch (Exception e) {
+            logger.error("validateToken method threw an exception", e);
+            throw e;
+        }
     }
 }

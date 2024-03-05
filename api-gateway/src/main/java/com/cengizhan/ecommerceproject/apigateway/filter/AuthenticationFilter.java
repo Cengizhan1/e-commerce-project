@@ -1,23 +1,18 @@
 package com.cengizhan.ecommerceproject.apigateway.filter;
 
-import com.cengizhan.ecommerceproject.apigateway.clients.IdentityServiceClient;
-import com.cengizhan.ecommerceproject.apigateway.util.JwtUtil;
+import com.cengizhan.ecommerceproject.apigateway.service.GatewayService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
 
 @Component
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
     @Autowired
     private RouteValidator validator;
-//    @Autowired
-//    private JwtUtil jwtUtil;
     @Autowired
-    private IdentityServiceClient identityServiceClient;
+    private GatewayService service;
 
     public AuthenticationFilter() {
         super(Config.class);
@@ -30,17 +25,11 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                     throw new RuntimeException("missing authorization header");
                 }
-
                 String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
                 if (authHeader != null && authHeader.startsWith("Bearer ")) {
                     authHeader = authHeader.substring(7);
                 }
-                try {
-                  identityServiceClient.validateToken(authHeader);
-                } catch (Exception e) {
-                    System.out.println("invalid access...! " + e.getMessage());
-                    throw new RuntimeException(e.getMessage());
-                }
+                service.validateToken(authHeader);
             }
             return chain.filter(exchange);
         });

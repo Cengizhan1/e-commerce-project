@@ -33,6 +33,10 @@ public class JwtService {
     return claimsResolver.apply(claims);
   }
 
+  private Integer extractUserId(String token) {
+    return Integer.parseInt(extractClaim(token, Claims::getSubject));
+  }
+
   public String generateToken(UserDetails userDetails) {
     return generateToken(new HashMap<>(), userDetails);
   }
@@ -69,8 +73,9 @@ public class JwtService {
     final String username = extractUsername(token);
     return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
   }
-  public void validateToken(final String token) {
+  public Integer validateToken(final String token) {
     Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
+    return extractUserId(token);
   }
   private Key getSignKey() {
     byte[] keyBytes = Decoders.BASE64.decode(secretKey);

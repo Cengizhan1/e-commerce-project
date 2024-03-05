@@ -5,61 +5,71 @@ import com.cengizhan.ecommerceproject.productservice.entity.Product;
 import com.cengizhan.ecommerceproject.productservice.entity.Review;
 import com.cengizhan.ecommerceproject.productservice.repository.IProductCategoryRepository;
 import com.cengizhan.ecommerceproject.productservice.repository.IProductRepository;
-import com.cengizhan.ecommerceproject.productservice.repository.IReviewRepository;
 import com.cengizhan.ecommerceproject.productservice.entity.enums.StockState;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-// Lombok
-@RequiredArgsConstructor
+import java.util.List;
+import java.util.logging.Logger;
+
 
 @Configuration
-@Log4j2
 @Component
 public class CommandLineRunnerBean {
-    // Injection
+
     private final IProductRepository iProductRepository;
-    private final IProductCategoryRepository iProductCategoryRepository;
-    private final IReviewRepository iReviewRepository;
+    private final IProductCategoryRepository productCategoryRepository;
+    private final Logger log = Logger.getLogger(CommandLineRunnerBean.class.getName());
 
-    public void dummyTask() {
-        for (int i = 0; i < 5; i++) {
-            ProductCategory ProductCategory = new ProductCategory();
-            ProductCategory.setName("Category " + i);
-            ProductCategory.setDescription("Description " + i);
-            iProductCategoryRepository.save(ProductCategory);
+    public CommandLineRunnerBean(IProductRepository iProductRepository, IProductCategoryRepository productCategoryRepository) {
+        this.iProductRepository = iProductRepository;
+        this.productCategoryRepository = productCategoryRepository;
+    }
 
-            Product product = new Product();
-            product.setName("Product " + i);
-            product.setDescription("Description " + i);
-            product.setPrice((float) i);
-            product.setStockState(StockState.LOW);
-            product.setStockCount(i);
-            product.setCode("Code " + i);
-            product.setAvgRating((float) i);
-            product.setRelationProductCategory(ProductCategory);
-            iProductRepository.save(product);
+    public void dummyData() {
+        ProductCategory productCategory1 = new ProductCategory();
+        productCategory1.setName("Elektronik");
+        productCategory1.setDescription_short("Elektronik ürünler");
+        productCategory1.setDescription("Elektronik ürünler hakkında bilgi");
 
-            Review review = new Review();
-            review.setReview("Review " + i);
-            review.setRating(i);
-            review.setRelationProduct(product);
-            iReviewRepository.save(review);
-        }
+        ProductCategory productCategory2 = new ProductCategory();
+        productCategory2.setName("Bilgisayar");
+        productCategory2.setDescription_short("Bilgisayar ürünler");
+        productCategory2.setDescription("Bilgisayar ürünler hakkında bilgi");
+        productCategoryRepository.saveAll(List.of(productCategory1, productCategory2));
+
+        Product product1 = new Product();
+        product1.setName("Laptop");
+        product1.setRelationProductCategory(productCategory2);
+        product1.setDescription_short("Laptop bilgisayar");
+        product1.setDescription("Laptop bilgisayar");
+        product1.setCode("LAPTOP");
+        product1.setPrice(1000f);
+        product1.setStockState(StockState.MEDIUM);
+        product1.setStockCount(100);
+
+        Product product2 = new Product();
+        product2.setName("Masaüstü");
+        product2.setRelationProductCategory(productCategory2);
+        product2.setDescription_short("Masaüstü bilgisayar");
+        product2.setDescription("Masaüstü bilgisayar");
+        product2.setCode("PC");
+        product2.setPrice(2000f);
+        product2.setStockState(StockState.MEDIUM);
+        product2.setStockCount(100);
+
+        iProductRepository.saveAll(List.of(product1, product2));
     }
 
 
     @Bean
-    public CommandLineRunner blogCommandLineRunnerMethod() {
+    public CommandLineRunner createDummyData() {
         return args -> {
-            System.out.println("CommandLineRunner Çalıştı");
-            log.info("CommandLineRunner Çalıştı");
+            log.info("CommandLineRunner is running");
             if (iProductRepository.count() == 0) {
-//                dummyTask();
+                dummyData();
             }
         };
     }
