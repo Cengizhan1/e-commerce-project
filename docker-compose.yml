@@ -25,7 +25,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
-    hostname: kafka-broker-1
+    hostname: kafka-broker-e-commerce
     container_name: kafka
     ports:
       - "29092:29092"
