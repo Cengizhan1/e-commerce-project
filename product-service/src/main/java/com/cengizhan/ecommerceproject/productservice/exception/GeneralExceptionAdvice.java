@@ -1,5 +1,6 @@
 package com.cengizhan.ecommerceproject.productservice.exception;
 
+import com.cengizhan.ecommerceproject.productservice.service.KafkaProducerService;
 import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,14 @@ import java.util.Map;
 @RestControllerAdvice
 public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
 
+    private final KafkaProducerService kafkaProducerService;
+    private static final String KAFKA_TOPIC = "productServiceErrorLog";
     private static final Logger logger = LoggerFactory.getLogger(GeneralExceptionAdvice.class);
+
+    public GeneralExceptionAdvice(KafkaProducerService kafkaProducerService) {
+        this.kafkaProducerService = kafkaProducerService;
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   @NotNull HttpHeaders headers,
@@ -33,11 +41,13 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         logger.info(String.format("Api validation error: %s",errors));
+        kafkaProducerService.sendMessage(KAFKA_TOPIC, errors.toString());
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<?> handle(ProductNotFoundException exception) {
+        kafkaProducerService.sendMessage(KAFKA_TOPIC, exception.getMessage());
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
