@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-e-commerce
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: e-commerce-project
+      MYSQL_USER: e-commerce-user
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123456
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
