@@ -27,7 +27,7 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService extends BaseService{
+public class AuthenticationService extends BaseService {
     private final IUserRepository repository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
@@ -39,21 +39,18 @@ public class AuthenticationService extends BaseService{
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .firstname(request.firstname())
+                .lastname(request.lastname())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
+                .role(request.role())
                 .build();
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
         basketClient.createBasket(savedUser.getId());
-        return AuthenticationResponse.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+        return AuthenticationResponse.build(jwtToken, refreshToken, request.firstname());
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -61,22 +58,22 @@ public class AuthenticationService extends BaseService{
         authenticationManager.authenticate(
 
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
+                        request.email(),
+                        request.password()
                 )
         );
-        var user = repository.findByEmail(request.getEmail())
+        var user = repository.findByEmail(request.email())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
 
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
-        return AuthenticationResponse.builder()
-                .firstname(user.getFirstname())
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+        return AuthenticationResponse.build(
+                jwtToken,
+                refreshToken,
+                user.getFirstname()
+        );
     }
 
     private void saveUserToken(User user, String jwtToken) {
@@ -120,10 +117,11 @@ public class AuthenticationService extends BaseService{
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);
                 saveUserToken(user, accessToken);
-                var authResponse = AuthenticationResponse.builder()
-                        .accessToken(accessToken)
-                        .refreshToken(refreshToken)
-                        .build();
+                var authResponse = AuthenticationResponse.build(
+                        accessToken,
+                        refreshToken,
+                        userEmail
+                );
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }

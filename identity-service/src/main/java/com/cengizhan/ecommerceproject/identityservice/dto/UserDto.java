@@ -1,17 +1,19 @@
 package com.cengizhan.ecommerceproject.identityservice.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.cengizhan.ecommerceproject.identityservice.entity.User;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserDto {
-    private Integer id;
-    private String firstname;
-    private String lastname;
-    private String email;
+public record UserDto(
+        Integer id,
+        String firstname,
+        String lastname,
+        String email
+) {
+    public static UserDto convert(User user) {
+        return new UserDto(
+                user.getId(),
+                user.getFirstname(),
+                user.getLastname(),
+                user.getEmail()
+        );
+    }
 }

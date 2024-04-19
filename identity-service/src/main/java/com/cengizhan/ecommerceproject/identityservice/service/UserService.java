@@ -1,6 +1,5 @@
 package com.cengizhan.ecommerceproject.identityservice.service;
 
-import com.cengizhan.ecommerceproject.identityservice.bean.ModelMapperBean;
 import com.cengizhan.ecommerceproject.identityservice.dto.UserDto;
 import com.cengizhan.ecommerceproject.identityservice.entity.User;
 import com.cengizhan.ecommerceproject.identityservice.repository.IUserRepository;
@@ -15,16 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService extends BaseService {
 
-    private final ModelMapperBean modelMapperBean;
     private final IUserRepository iUserRepository;
-
-    public UserDto entityToDto(User user) {
-        return modelMapperBean.modelMapperMethod().map(user, UserDto.class);
-    }
-
+    
     public UserDto userFindById(Integer id) {
         User findUserEntity = iUserRepository.findById(id)
                     .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-        return entityToDto(findUserEntity);
+        return UserDto.convert(findUserEntity);
     }
 }

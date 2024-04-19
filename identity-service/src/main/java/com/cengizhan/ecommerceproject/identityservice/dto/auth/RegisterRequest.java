@@ -1,20 +1,11 @@
 package com.cengizhan.ecommerceproject.identityservice.dto.auth;
 
 import com.cengizhan.ecommerceproject.identityservice.entity.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class RegisterRequest {
-
-  private String firstname;
-  private String lastname;
-  private String email;
-  private String password;
-  private Role role;
-}
+public record RegisterRequest(
+        String firstname,
+        String lastname,
+        String email,
+        String password,
+        Role role
+) {}

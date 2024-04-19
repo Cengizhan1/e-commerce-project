@@ -1,21 +1,16 @@
 package com.cengizhan.ecommerceproject.identityservice.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class AuthenticationResponse {
-
-  @JsonProperty("access_token")
-  private String accessToken;
-  @JsonProperty("refresh_token")
-  private String refreshToken;
-  @JsonProperty("firstname")
-  private String firstname;
+public record AuthenticationResponse(
+        @JsonProperty("access_token")
+        String accessToken,
+        @JsonProperty("refresh_token")
+        String refreshToken,
+        @JsonProperty("firstname")
+        String firstname
+) {
+        public static AuthenticationResponse build(String accessToken, String refreshToken, String firstname) {
+                return new AuthenticationResponse(accessToken, refreshToken, firstname);
+        }
 }
