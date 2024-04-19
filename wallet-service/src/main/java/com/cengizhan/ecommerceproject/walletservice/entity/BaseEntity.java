@@ -1,4 +1,4 @@
-package com.cengizhan.ecommerceproject.walletservice.data;
+package com.cengizhan.ecommerceproject.walletservice.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
