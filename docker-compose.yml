@@ -57,3 +57,121 @@ services:
     container_name: zipkin
     ports:
       - "9411:9411"
+
+  naming-server:
+    image: e-commerce-project/naming-server
+    build:
+      context: ./naming-server
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_PORT=8761
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    image: e-commerce-project/api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_PORT=8765
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SPRING_APPLICATION_NAME=api-gateway
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+    ports:
+      - "8765:8765"
+
+  identity-service:
+    image: e-commerce-project/identity-service
+    build:
+      context: ./identity-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SERVER_PORT=9898
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce-project?createDatabaseIfNotExist=true&autoReconnect=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+    ports:
+      - "9898:9898"
+
+  basket-service:
+    image: e-commerce-project/basket-service
+    build:
+      context: ./basket-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SERVER_PORT=8400
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce-project?createDatabaseIfNotExist=true&autoReconnect=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+    ports:
+      - "8400:8400"
+
+  order-service:
+    image: e-commerce-project/order-service
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SERVER_PORT=8300
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce-project?createDatabaseIfNotExist=true&autoReconnect=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+    ports:
+      - "8300:8300"
+
+  product-service:
+    image: e-commerce-project/product-service
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SERVER_PORT=8000
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce-project?createDatabaseIfNotExist=true&autoReconnect=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+    ports:
+      - "8000:8000"
+
+  wallet-service:
+    image: e-commerce-project/wallet-service
+    build:
+      context: ./wallet-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SERVER_PORT=8005
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce-project?createDatabaseIfNotExist=true&autoReconnect=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+    ports:
+      - "8005:8005"
+
+  logger-service:
+    image: e-commerce-project/logger-service
+    build:
+      context: ./logger-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://naming-server:8761/eureka/
+      - SERVER_PORT=8083
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce-project?createDatabaseIfNotExist=true&autoReconnect=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - naming-server
+      - kafka
+      - zookeeper
+    ports:
+      - "8083:8083"
