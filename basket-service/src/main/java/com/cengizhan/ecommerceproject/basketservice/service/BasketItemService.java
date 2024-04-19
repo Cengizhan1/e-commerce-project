@@ -35,8 +35,6 @@ public class BasketItemService {
                         () -> new BasketItemNotFoundException(
                                 "Basket item not found for product: " + productId)
                 );
-        System.out.println("qlwödlqwö");
-        System.out.println(basketItem.getQuantity());
         iBasketItemRepository.delete(basketItem);
     }
 

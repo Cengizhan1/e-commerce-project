@@ -19,8 +19,6 @@ public class BasketService{
     private final IBasketRepository iBasketRepository;
     private final BasketItemService basketItemService;
 
-
-    
     public void basketCreate(Integer userId) {
         if(!iBasketRepository.existsByUserId(userId)){
             Basket basket = new Basket();
@@ -29,7 +27,6 @@ public class BasketService{
         }
     }
 
-    
     public void addProductToBasket(Long productId, Short quantity, Integer userId) {
         basketItemService.create(productId, quantity,findBasketByUserId(userId));
     }

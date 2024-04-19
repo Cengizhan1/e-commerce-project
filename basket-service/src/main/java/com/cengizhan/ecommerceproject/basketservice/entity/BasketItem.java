@@ -15,10 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table(name = "basket_items")
-public class BasketItem extends BaseEntity implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class BasketItem extends BaseEntity {
 
     @Column(name = "product_id",nullable = false)
     private Long productId;
