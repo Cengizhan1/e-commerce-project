@@ -20,7 +20,7 @@ public class GatewayService {
         } catch (Exception e) {
             e.getStackTrace();
             System.out.println("invalid access...! " + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("invalid access...!" + e.getMessage());
         }
     }
 

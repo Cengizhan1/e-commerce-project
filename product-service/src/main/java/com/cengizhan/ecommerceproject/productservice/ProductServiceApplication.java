@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-public class ProductServiceApplication implements CommandLineRunner {
+public class ProductServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 	}
@@ -25,10 +25,5 @@ public class ProductServiceApplication implements CommandLineRunner {
 	@Bean
 	public ErrorDecoder errorDecoder() {
 		return new RetreiveMessageErrorDecoder();
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-
 	}
 }
