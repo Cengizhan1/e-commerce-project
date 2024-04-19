@@ -22,32 +22,33 @@ public class ReviewController {
     // CREATE
     // /review/api/v1/create
     @PostMapping
-    public ResponseEntity<?> reviewCreate(@Valid @RequestBody ReviewDto reviewDto) {
-        return ResponseEntity.ok(service.reviewCreate(reviewDto));
+    public ResponseEntity<?> create(@Valid @RequestBody ReviewDto reviewDto) {
+        return ResponseEntity.ok(service.create(reviewDto));
     }
 
     // FIND
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> reviewServiceFindById(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(service.reviewServiceFindById(id));
+    public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
     // LIST
     // /review/api/v1/list
     @GetMapping(value = "/product/{productId}")
-    public ResponseEntity<List<ReviewDto>> reviewListByProductId(@PathVariable(name = "productId") Long categoryId) {
-        return ResponseEntity.ok(service.reviewListByProductId(categoryId));
+    public ResponseEntity<List<ReviewDto>> listByProductId(@PathVariable(name = "productId") Long productId) {
+        return ResponseEntity.ok(service.listByProductId(productId));
     }
 
     // UPDATE
     @PutMapping(value = "/{id}")
-    public ResponseEntity<?> reviewUpdate(@PathVariable(name = "id") Long id, @Valid @RequestBody ReviewDto reviewDto) {
-        return ResponseEntity.status(200).body(service.reviewServiceUpdate(id, reviewDto));
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @Valid @RequestBody ReviewDto reviewDto) {
+        return ResponseEntity.status(200).body(service.update(id, reviewDto));
     }
 
     // DELETE
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> reviewDeleteById(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.status(200).body(service.reviewServiceDeleteById(id));
+    public ResponseEntity<Void> reviewDeleteById(@PathVariable(name = "id") Long id) {
+        service.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

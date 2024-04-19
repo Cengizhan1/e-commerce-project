@@ -1,11 +1,10 @@
 package com.cengizhan.ecommerceproject.productservice.service;
 
-import com.cengizhan.ecommerceproject.productservice.bean.ModelMapperBean;
 import com.cengizhan.ecommerceproject.productservice.dto.BasketItemDto;
 import com.cengizhan.ecommerceproject.productservice.client.BasketClient;
 import com.cengizhan.ecommerceproject.productservice.entity.Product;
 import com.cengizhan.ecommerceproject.productservice.dto.ProductDto;
-import com.cengizhan.ecommerceproject.productservice.repository.IProductRepository;
+import com.cengizhan.ecommerceproject.productservice.repository.ProductRepository;
 import com.cengizhan.ecommerceproject.productservice.exception.ProductNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,50 +15,24 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private final IProductRepository iProductRepository;
-    private final ModelMapperBean modelMapperBean;
+    private final ProductRepository productRepository;
     private final BasketClient basketClient;
 
-    public ProductService(IProductRepository iProductRepository,
-                          ModelMapperBean modelMapperBean,
+    public ProductService(ProductRepository productRepository,
                           BasketClient basketClient) {
-        this.iProductRepository = iProductRepository;
-        this.modelMapperBean = modelMapperBean;
+        this.productRepository = productRepository;
         this.basketClient = basketClient;
     }
 
-    // MODEL MAPPER
-
-    public ProductDto entityToDto(Product product) {
-        return modelMapperBean.modelMapperMethod().map(product, ProductDto.class);
-    }
-
-
-    public Product dtoToEntity(ProductDto productDto) {
-        return modelMapperBean.modelMapperMethod().map(productDto, Product.class);
-    }
-
-    // LIST
     public List<ProductDto> list() {
-        List<Product> entityList = (List<Product>) iProductRepository.findAll();
-        List<ProductDto> productDtoList = new ArrayList<>();
-        for (Product entity : entityList) {
-            ProductDto productDto = entityToDto(entity);
-            productDtoList.add(productDto);
-        }
-        return productDtoList;
+        return productRepository.findAll().stream().map(ProductDto::convert).toList();
     }
 
-
-    // LIST BY CATEGORY
     public List<ProductDto> listByCategory(Long productCategoryId) {
-        List<Product> entityList = iProductRepository.findByRelationProductCategoryId(productCategoryId);
-        List<ProductDto> productDtoList = new ArrayList<>();
-        for (Product entity : entityList) {
-            ProductDto productDto = entityToDto(entity);
-            productDtoList.add(productDto);
-        }
-        return productDtoList;
+        return productRepository.findByRelationProductCategoryId(productCategoryId)
+                .stream()
+                .map(ProductDto::convert)
+                .toList();
     }
 
 //    // LIST BY USER ID
@@ -75,26 +48,32 @@ public class ProductService {
 
     // FIND
     public ProductDto findById(Long id) {
-        Product findProduct = iProductRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found for id: " + id));
-        return entityToDto(findProduct);
+        return ProductDto.convert(findProduct(id));
     }
 
 
     public void addBasket(Long id, Short quantity, String bearerToken) {
-        basketClient.addProductToBasket(1, new BasketItemDto(id, quantity), bearerToken);
+        basketClient.addProductToBasket(1,
+                new BasketItemDto(id,
+                        quantity),
+                bearerToken);
     }
 
     public void removeBasket(Long id, String bearerToken) {
-        basketClient.removeProductFromBasket(1, id,bearerToken);
+        basketClient.removeProductFromBasket(1, id, bearerToken);
     }
 
     public void clearBasket(String bearerToken) {
-        basketClient.clearBasket(1,bearerToken);
+        basketClient.clearBasket(1, bearerToken);
     }
 
     public List<ProductDto> getBasket(String bearerToken) {
-        basketClient.listProductsInBasket(1,bearerToken);
+        basketClient.listProductsInBasket(1, bearerToken);
         return null;
+    }
+
+    protected Product findProduct(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found for id: " + id));
     }
 }

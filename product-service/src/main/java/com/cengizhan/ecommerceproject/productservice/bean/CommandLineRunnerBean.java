@@ -2,9 +2,8 @@ package com.cengizhan.ecommerceproject.productservice.bean;
 
 import com.cengizhan.ecommerceproject.productservice.entity.ProductCategory;
 import com.cengizhan.ecommerceproject.productservice.entity.Product;
-import com.cengizhan.ecommerceproject.productservice.entity.Review;
-import com.cengizhan.ecommerceproject.productservice.repository.IProductCategoryRepository;
-import com.cengizhan.ecommerceproject.productservice.repository.IProductRepository;
+import com.cengizhan.ecommerceproject.productservice.repository.ProductCategoryRepository;
+import com.cengizhan.ecommerceproject.productservice.repository.ProductRepository;
 import com.cengizhan.ecommerceproject.productservice.entity.enums.StockState;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -19,12 +18,12 @@ import java.util.logging.Logger;
 @Component
 public class CommandLineRunnerBean {
 
-    private final IProductRepository iProductRepository;
-    private final IProductCategoryRepository productCategoryRepository;
+    private final ProductRepository productRepository;
+    private final ProductCategoryRepository productCategoryRepository;
     private final Logger log = Logger.getLogger(CommandLineRunnerBean.class.getName());
 
-    public CommandLineRunnerBean(IProductRepository iProductRepository, IProductCategoryRepository productCategoryRepository) {
-        this.iProductRepository = iProductRepository;
+    public CommandLineRunnerBean(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository) {
+        this.productRepository = productRepository;
         this.productCategoryRepository = productCategoryRepository;
     }
 
@@ -60,7 +59,7 @@ public class CommandLineRunnerBean {
         product2.setStockState(StockState.MEDIUM);
         product2.setStockCount(100);
 
-        iProductRepository.saveAll(List.of(product1, product2));
+        productRepository.saveAll(List.of(product1, product2));
     }
 
 
@@ -68,7 +67,7 @@ public class CommandLineRunnerBean {
     public CommandLineRunner createDummyData() {
         return args -> {
             log.info("CommandLineRunner is running");
-            if (iProductRepository.count() == 0) {
+            if (productRepository.count() == 0) {
                 dummyData();
             }
         };

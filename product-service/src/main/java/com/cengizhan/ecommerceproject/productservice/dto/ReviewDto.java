@@ -1,38 +1,23 @@
-    package com.cengizhan.ecommerceproject.productservice.dto;
+package com.cengizhan.ecommerceproject.productservice.dto;
 
-    import jakarta.validation.constraints.NotEmpty;
-    import jakarta.validation.constraints.Size;
-    import lombok.AllArgsConstructor;
-    import lombok.Builder;
-    import lombok.Data;
-    import lombok.NoArgsConstructor;
-    import lombok.extern.log4j.Log4j2;
+import com.cengizhan.ecommerceproject.productservice.entity.Review;
 
-    import java.io.Serial;
-    import java.io.Serializable;
+import java.io.Serial;
+import java.io.Serializable;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-    @Log4j2
-    public class ReviewDto implements Serializable {
 
-        @Serial
-        private static final long serialVersionUID = 1L;
-
-        private Long id;
-
-        @NotEmpty(message ="{review.validation.constraints.NotNull.message}")
-        @Size(min=3,message = "{review.validation.constraints.minLength.message}")
-        private String review;
-
-//        @NotEmpty(message ="{userId.validation.constraints.NotNull.message}")
-//        private Integer userId;
-
-        @NotEmpty(message ="{rating.validation.constraints.NotNull.message}")
-        private Integer rating;
-
-        @NotEmpty(message ="{productId.validation.constraints.NotNull.message}")
-        private Long productId;
-    }
+public record ReviewDto(
+         Long id,
+         String review,
+         Integer rating,
+         Long productId
+){
+        public static ReviewDto convert(Review review){
+            return new ReviewDto(
+                    review.getId(),
+                    review.getReview(),
+                    review.getRating(),
+                    review.getRelationProduct().getId()
+            );
+        }
+}
